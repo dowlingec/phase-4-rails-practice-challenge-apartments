@@ -2,24 +2,29 @@ class TenantsController < ApplicationController
 
     def index
         tenants = Tenant.all
-        render json: Tenants
-      end
+        render json: tenants
+    end
     
-      def create
-        tenant = Tenant.create(number: params[:number])
+    def create
+        tenant = Tenant.create(tenant_params)
         render json: tenant
-      end
+    end
     
-      def update
+    def update
         tenant = Tenant.find_by(id: params[:id])
-        tenant.update(number: params[:number])
+        tenant.update(tenant_params)
         render json: tenant
-      end
+    end
     
-      def destroy
+    def destroy
         tenant = Tenant.find_by(id: params[:id])
-        activity.destroy
+        tenant.destroy
         header :no_content
-      end
+    end
 
+    private
+
+    def tenant_params
+        params.permit(:name, :age)
+    end
 end
