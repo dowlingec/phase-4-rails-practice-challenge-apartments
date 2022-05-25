@@ -5,8 +5,7 @@ class ApartmentsController < ApplicationController
   end
 
   def create
-    apartment = Apartment.find_by(id: params[:id])
-    apartment.create(number: params[:number])
+    apartment = Apartment.create(number: params[:number])
     render json: apartment
   end
 
