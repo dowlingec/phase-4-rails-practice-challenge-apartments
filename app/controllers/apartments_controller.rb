@@ -15,6 +15,12 @@ class ApartmentsController < ApplicationController
     render json: apartment
   end
 
+  def destroy
+    apartment = Apartment.find_by(id: params[:id])
+    activity.destroy
+    header :no_content
+  end
+
   private
   # def apt_params
   #   params.permit(:number)
