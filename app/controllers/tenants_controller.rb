@@ -6,7 +6,7 @@ class TenantsController < ApplicationController
     end
     
     def create
-        tenant = Tenant.create(tenant_params)
+        tenant = Tenant.create!(tenant_params)
         render json: tenant
     end
     
